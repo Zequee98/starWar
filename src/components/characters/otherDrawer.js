@@ -1,16 +1,11 @@
 import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import Typography from '@material-ui/core/Typography';
 
 const drawerWidth = 500;
 
@@ -54,7 +49,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function PersistentDrawerRight({ handleDrawerChange, open }) {
+export default function PersistentDrawerRight({ handleDrawerChange, open, item }) {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -75,23 +70,12 @@ export default function PersistentDrawerRight({ handleDrawerChange, open }) {
         </IconButton>
       </div>
       <Divider />
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      <div style={{ margin: 20 }}>
+        <Typography style={{ marginBottom: 10 }} variant="h5" component="h2">Título original: {item.title}</Typography>
+        <Typography style={{ marginBottom: 10 }} variant="h5" component="h2">Año: {item.release_date}</Typography>
+        <Typography style={{ marginBottom: 10 }} variant="h5" component="h2">Dirección: {item.director}</Typography>
+        <Typography style={{ marginBottom: 10 }} variant="h5" component="h2">Productor: {item.producer}</Typography>
+      </div>
     </Drawer>
   );
-}
+};

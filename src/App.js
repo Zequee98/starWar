@@ -46,12 +46,14 @@ const App = () => {
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = React.useState(false);
+  const [item, setItem] = React.useState({});
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const handleDrawerChange = () => {
+  const handleDrawerChange = (movie) => {
+    if (movie) setItem(movie)
     setOpen(!open);
   };
 
@@ -67,7 +69,11 @@ const App = () => {
           <Routes handleDrawerChange={handleDrawerChange} />
         </main>
 
-        <OtherDrawer handleDrawerChange={handleDrawerChange} open={open} />
+        <OtherDrawer
+          handleDrawerChange={handleDrawerChange}
+          open={open}
+          item={item}
+        />
       </div>
     </Provider>
   );
