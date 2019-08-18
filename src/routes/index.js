@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Character from '../components/characters';
 
-const routes = () => (
+const routes = ({ handleDrawerChange }) => (
   <Router>
-    <Route exact path="/" component={Character} />
+    <Route exact path="/" component={() => <Character handleDrawerChange={handleDrawerChange} />} />
   </Router>
 );
 

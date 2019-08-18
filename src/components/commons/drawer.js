@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
@@ -10,16 +8,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-
-import AppBar from './AppBar';
+import { makeStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-  },
   drawer: {
     [theme.breakpoints.up('md')]: {
       width: drawerWidth,
@@ -28,27 +21,20 @@ const useStyles = makeStyles(theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    marginTop: 64,
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
+  drawerPaperMobile: {
+    width: drawerWidth,
   },
   toolbar: theme.mixins.toolbar,
+
 }));
 
-const ResponsiveDrawer = ({ container, children }) => {
+const ResponsiveDrawer = ({ container, mobileOpen, handleDrawerToggle }) => {
   const classes = useStyles();
-  const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
 
   const drawer = (
     <div>
-      <div className={classes.toolbar} />
-      <Divider />
       <List>
         {['Personajes', 'Peliculas'].map((text, index) => (
           <ListItem button key={text}>
@@ -61,40 +47,30 @@ const ResponsiveDrawer = ({ container, children }) => {
   );
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar handleDrawerToggle={handleDrawerToggle} />
-
-      <nav className={classes.drawer} aria-label="mailbox folders">
-        <Hidden mdUp implementation="css">
-          <Drawer
-            container={container}
-            variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            classes={{ paper: classes.drawerPaper }}
-            ModalProps={{ keepMounted: true }}
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-        <Hidden smDown implementation="css">
-          <Drawer
-            classes={{ paper: classes.drawerPaper }}
-            variant="permanent"
-            open
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-      </nav>
-
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        {children}
-      </main>
-    </div>
+    <nav className={classes.drawer} aria-label="mailbox folders">
+      <Hidden mdUp implementation="css">
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          classes={{ paper: classes.drawerPaperMobile }}
+          ModalProps={{ keepMounted: true }}
+        >
+          <div className={classes.toolbar} />
+          {drawer}
+        </Drawer>
+      </Hidden>
+      <Hidden smDown implementation="css">
+        <Drawer
+          classes={{ paper: classes.drawerPaper }}
+          variant="permanent"
+          open
+        >
+          {drawer}
+        </Drawer>
+      </Hidden>
+    </nav>
   );
 };
 
