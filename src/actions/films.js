@@ -10,11 +10,3 @@ export const getFilms = () => ({
     .then(response => ({ data: response.data }))
     .catch(error => Promise.reject(error))
 });
-
-export const searchFilm = (query) => ({
-  type: SEARCH_FILM,
-  payload: axios
-    .get(`https://swapi.co/api/films/?search=`)
-    .then(response => ({ data: response.data }))
-    .catch(error => Promise.reject(error))
-});

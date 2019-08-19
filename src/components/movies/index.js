@@ -1,22 +1,22 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getCharacters } from '../../actions/characters';
+import { getFilms } from '../../actions/films';
 
 import Table from '../commons/table/simpleTable';
 
 const Movies = ({ handleDrawerChange }) => {
   const dispatch = useDispatch()
-  const characters = useSelector(state => state.characters)
+  const films = useSelector(state => state.films)
 
   useEffect(() => {
-    if (!characters.data.results) dispatch(getCharacters());
+    if (!films.data.results) dispatch(getFilms());
   }, []);
 
   return (
     <Table
-      title="Personajes"
-      films={characters}
+      title="Peliculas"
+      films={films}
       handleDrawerChange={handleDrawerChange}
     />
   );

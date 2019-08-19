@@ -14,7 +14,7 @@ const SimpleTable = ({
   page,
   search,
 }) => {
-  const data = films.list.filter(data => {
+  const data = (films.data.results || []).filter(data => {
     if (search && data.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())) return true;
     else if (search === '') return true;
     return false;

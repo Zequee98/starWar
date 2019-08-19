@@ -17,7 +17,7 @@ const Footer = ({
         <TablePagination
           rowsPerPageOptions={[]}
           colSpan={3}
-          count={films.list.length}
+          count={films.data.count || 0}
           page={page}
           SelectProps={{ inputProps: { 'aria-label': 'rows per page' }, native: true }}
           onChangePage={handleChangePage}

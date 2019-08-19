@@ -3,7 +3,8 @@ import { Route } from "react-router-dom";
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Character from '../components/characters';
+import Characters from '../components/characters';
+import Movies from '../components/movies';
 import Home from '../components/home';
 
 const useStyles = makeStyles(theme => ({
@@ -35,7 +36,8 @@ const routes = ({ handleDrawerChange, open }) => {
 
       <main className={clsx(classes.content, { [classes.contentShift]: open })}>
         <div className={classes.toolbar} />
-        <Route exact path="/movies" component={() => <Character handleDrawerChange={handleDrawerChange} />} />
+        <Route exact path="/movies" component={() => <Movies handleDrawerChange={handleDrawerChange} />} />
+        <Route exact path="/characters" component={() => <Characters handleDrawerChange={handleDrawerChange} />} />
       </main>
 
     </React.Fragment>

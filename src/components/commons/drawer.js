@@ -35,6 +35,7 @@ const ResponsiveDrawer = ({ container, mobileOpen, handleDrawerToggle }) => {
   const [select, setSelect] = useState(window.location.pathname);
 
   const handleChangeSelect = (path) => {
+    handleDrawerToggle();
     setSelect(path);
   };
 

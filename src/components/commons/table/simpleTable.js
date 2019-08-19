@@ -25,7 +25,7 @@ const InputContainer = styled.div`
   align-items: center;
 `;
 
-const SimpleTable = ({ handleDrawerChange, films }) => {
+const SimpleTable = ({ handleDrawerChange, films, title }) => {
   const classes = useStyles();
   const [search, setValueSearch] = React.useState('');
   const [page, setPage] = React.useState(0);
@@ -43,7 +43,7 @@ const SimpleTable = ({ handleDrawerChange, films }) => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Peliculas</TableCell>
+            <TableCell>{title}</TableCell>
             <TableCell align="right">
               <InputContainer>
                 <TextField
