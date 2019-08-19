@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
@@ -7,7 +8,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
 import { makeStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
@@ -32,16 +32,35 @@ const useStyles = makeStyles(theme => ({
 
 const ResponsiveDrawer = ({ container, mobileOpen, handleDrawerToggle }) => {
   const classes = useStyles();
+  const [select, setSelect] = useState(window.location.pathname);
+
+  const handleChangeSelect = (path) => {
+    setSelect(path);
+  };
 
   const drawer = (
     <div>
       <List>
-        {['Personajes', 'Peliculas'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <ListItem
+          button
+          component={Link}
+          to='/characters'
+          onClick={() => handleChangeSelect('/characters')}
+          selected={select === '/characters'}
+        >
+          <ListItemIcon><InboxIcon /></ListItemIcon>
+          <ListItemText primary="Personajes" />
+        </ListItem>
+        <ListItem
+          button
+          component={Link}
+          to='/movies'
+          onClick={() => handleChangeSelect('/movies')}
+          selected={select === '/movies'}
+        >
+          <ListItemIcon><InboxIcon /></ListItemIcon>
+          <ListItemText primary="Peliculas" />
+        </ListItem>
       </List>
     </div>
   );

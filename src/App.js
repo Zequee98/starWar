@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -33,20 +34,28 @@ const App = () => {
   return (
     <Provider store={store}>
       <div className={classes.root}>
-        <CssBaseline />
-        <AppBar handleDrawerToggle={handleDrawerToggle} open={open} />
-        <Drawer handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} />
+        <Router>
+          <CssBaseline />
+          <AppBar
+            handleDrawerToggle={handleDrawerToggle}
+            open={open}
+          />
+          <Drawer
+            handleDrawerToggle={handleDrawerToggle}
+            mobileOpen={mobileOpen}
+          />
 
-        <Routes
-          handleDrawerChange={handleDrawerChange}
-          open={open}
-        />
+          <Routes
+            handleDrawerChange={handleDrawerChange}
+            open={open}
+          />
 
-        <DrawerInfo
-          handleDrawerChange={handleDrawerChange}
-          open={open}
-          item={item}
-        />
+          <DrawerInfo
+            handleDrawerChange={handleDrawerChange}
+            open={open}
+            item={item}
+          />
+        </Router>
       </div>
     </Provider>
   );

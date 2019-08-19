@@ -1,8 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 
 import Character from '../components/characters';
 import Home from '../components/home';
@@ -31,8 +30,7 @@ const routes = ({ handleDrawerChange, open }) => {
   const classes = useStyles();
 
   return (
-    <Router>
-      <div className={classes.toolbar} />
+    <React.Fragment>
       <Route exact path="/" component={Home} />
 
       <main className={clsx(classes.content, { [classes.contentShift]: open })}>
@@ -40,7 +38,7 @@ const routes = ({ handleDrawerChange, open }) => {
         <Route exact path="/movies" component={() => <Character handleDrawerChange={handleDrawerChange} />} />
       </main>
 
-    </Router>
+    </React.Fragment>
   );
 }
 
