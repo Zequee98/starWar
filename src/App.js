@@ -7,7 +7,7 @@ import clsx from 'clsx';
 import store from './store';
 import Drawer from './components/commons/drawer';
 import AppBar from './components/commons/AppBar';
-import OtherDrawer from './components/characters/otherDrawer';
+import DrawerInfo from './components/commons/drawerInfo';
 import Routes from './routes';
 
 const useStyles = makeStyles(theme => ({
@@ -69,7 +69,7 @@ const App = () => {
           <Routes handleDrawerChange={handleDrawerChange} />
         </main>
 
-        <OtherDrawer
+        <DrawerInfo
           handleDrawerChange={handleDrawerChange}
           open={open}
           item={item}
