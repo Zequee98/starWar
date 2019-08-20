@@ -27,8 +27,17 @@ const App = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const handleDrawerChange = (movie) => {
-    if (movie) setItem(movie)
+  const handleDrawerChange = (data, from) => {
+    if (data) {
+      if ((from === 'movies' ? data.title : data.name) === (item.title || item.name)) {
+        setItem({});
+        return setOpen(false);
+      }
+      if (!open) setOpen(true);
+      return setItem(data);
+    }
+
+    setItem({});
     setOpen(!open);
   };
 

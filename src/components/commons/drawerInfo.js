@@ -41,7 +41,7 @@ const PersistentDrawerRight = ({ handleDrawerChange, open, item }) => {
       }}
     >
       <div className={classes.drawerHeader}>
-        <IconButton onClick={handleDrawerChange}>
+        <IconButton onClick={() => handleDrawerChange(false)}>
           {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
         </IconButton>
       </div>

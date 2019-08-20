@@ -6,6 +6,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from "react-router-dom";
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -45,9 +47,11 @@ const AppBarComponent = ({ handleDrawerToggle, open }) => {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" noWrap>
-          Start Wars
-        </Typography>
+        <Button component={Link} to="/">
+          <Typography variant="h6" noWrap>
+            Star Wars
+          </Typography>
+        </Button>
       </Toolbar>
     </AppBar>
   );

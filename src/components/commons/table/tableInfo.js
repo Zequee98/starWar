@@ -6,7 +6,8 @@ import TableRow from '@material-ui/core/TableRow';
 const tableInfo = ({
   data,
   title,
-  handleDrawerChange
+  handleDrawerChange,
+  from
 }) => (
   <TableRow key={title}>
     <TableCell component="th" scope="row">
@@ -15,7 +16,7 @@ const tableInfo = ({
     <TableCell align="right">
       <EyeIcon
         style={{ cursor: 'pointer' }}
-        onClick={() => handleDrawerChange(data)}
+          onClick={() => handleDrawerChange(data, from)}
       />
     </TableCell>
   </TableRow>
