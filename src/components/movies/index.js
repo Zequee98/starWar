@@ -10,14 +10,15 @@ const Movies = ({ handleDrawerChange }) => {
   const films = useSelector(state => state.films)
 
   useEffect(() => {
-    if (!films.data.results) dispatch(getFilms());
+    if (!films.data.results && !films.isFetching) dispatch(getFilms());
   }, []);
 
   return (
     <Table
       title="Peliculas"
-      films={films}
+      data={films}
       handleDrawerChange={handleDrawerChange}
+      from="movies"
     />
   );
 };

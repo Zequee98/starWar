@@ -11,6 +11,7 @@ import styled from 'styled-components';
 
 import TableBody from './tableBody';
 import TableFooter from './tableFooter';
+import TableInfo from './tableInfo';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,7 +26,12 @@ const InputContainer = styled.div`
   align-items: center;
 `;
 
-const SimpleTable = ({ handleDrawerChange, films, title }) => {
+const SimpleTable = ({
+  handleDrawerChange,
+  data,
+  title,
+  from
+}) => {
   const classes = useStyles();
   const [search, setValueSearch] = React.useState('');
   const [page, setPage] = React.useState(0);
@@ -37,6 +43,19 @@ const SimpleTable = ({ handleDrawerChange, films, title }) => {
   const handleChangeText = event => {
     setValueSearch(event.target.value);
   };
+
+  const counterFilter = (data.data.results || []).filter(data => {
+    if (search && (from === 'movies' ? data.title : data.name).toLocaleLowerCase().includes(search.toLocaleLowerCase())) return true;
+    else if (search === '') return true;
+    return false;
+  })
+
+  const dataFilter = counterFilter.slice(page * 10, page * 10 + 10).map((data) => {
+    if (from === 'movies') return (<TableInfo key={data.title} title={data.title} data={data} handleDrawerChange={handleDrawerChange} />);
+    return (<TableInfo key={data.name} title={data.name} data={data} handleDrawerChange={handleDrawerChange} />);
+  })
+
+  const emptyRows = search ? (10 - Math.min(10, dataFilter.length)) : (10 - Math.min(10, (data.data.results || []).length - page * 10));
 
   return (
     <Paper className={classes.root}>
@@ -59,18 +78,16 @@ const SimpleTable = ({ handleDrawerChange, films, title }) => {
         </TableHead>
 
         <TableBody
-          films={films}
-          handleDrawerChange={handleDrawerChange}
-          rowsPerPage={10}
-          page={page}
-          search={search}
+          data={data}
+          emptyRows={emptyRows}
+          dataFilter={dataFilter}
         />
 
         <TableFooter
-          films={films}
           handleChangePage={handleChangePage}
           page={page}
           rowsPerPage={10}
+          counterFilter={counterFilter}
         />
       </Table>
     </Paper>

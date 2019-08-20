@@ -6,7 +6,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TablePaginationActions from './pagination';
 
 const Footer = ({
-  films,
+  counterFilter,
   handleChangePage,
   page,
   rowsPerPage
@@ -17,7 +17,7 @@ const Footer = ({
         <TablePagination
           rowsPerPageOptions={[]}
           colSpan={3}
-          count={films.data.count || 0}
+          count={counterFilter.length}
           page={page}
           SelectProps={{ inputProps: { 'aria-label': 'rows per page' }, native: true }}
           onChangePage={handleChangePage}

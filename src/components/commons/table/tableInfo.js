@@ -4,17 +4,18 @@ import EyeIcon from '@material-ui/icons/Visibility';
 import TableRow from '@material-ui/core/TableRow';
 
 const tableInfo = ({
-  film,
+  data,
+  title,
   handleDrawerChange
 }) => (
-  <TableRow key={film.title}>
+  <TableRow key={title}>
     <TableCell component="th" scope="row">
-      {film.title}
+      {title}
     </TableCell>
     <TableCell align="right">
       <EyeIcon
         style={{ cursor: 'pointer' }}
-        onClick={() => handleDrawerChange(film)}
+        onClick={() => handleDrawerChange(data)}
       />
     </TableCell>
   </TableRow>

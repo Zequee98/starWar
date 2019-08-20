@@ -1,20 +1,24 @@
 import axios from 'axios';
 
 export const GET_CHARACTERS = 'GET_CHARACTERS';
-export const NEXT_PAGE = 'NEXT_PAGE';
+
+const getAllCharacters = (url, peoples, resolve, reject) => {
+  axios.get(url)
+    .then(response => {
+      const retrivedPeoples = peoples.concat(response.data.results)
+      if (response.data.next !== null) getAllCharacters(response.data.next, retrivedPeoples, resolve, reject)
+      else resolve(retrivedPeoples)
+    })
+    .catch(error => Promise.reject(error))
+}
 
 export const getCharacters = () => ({
   type: GET_CHARACTERS,
-  payload: axios
-    .get('https://swapi.co/api/people/')
-    .then(response => ({ data: response.data }))
+  payload: new Promise((resolve, reject) => {
+    getAllCharacters('https://swapi.co/api/people/', [], resolve, reject)
+  })
+    .then(response => ({ data: { results: response, count: response.length } }))
     .catch(error => Promise.reject(error))
 });
 
-export const nextPage = (page) => ({
-  type: NEXT_PAGE,
-  payload: axios
-    .get(`https://swapi.co/api/people/?page=${page}`)
-    .then(response => ({ data: response.data }))
-    .catch(error => Promise.reject(error))
-});
+

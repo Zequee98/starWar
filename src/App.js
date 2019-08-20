@@ -22,7 +22,8 @@ const App = () => {
   const [open, setOpen] = React.useState(false);
   const [item, setItem] = React.useState({});
 
-  const handleDrawerToggle = () => {
+  const handleDrawerToggle = (close) => {
+    if (!close) return setMobileOpen(false);
     setMobileOpen(!mobileOpen);
   };
 
