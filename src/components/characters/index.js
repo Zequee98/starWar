@@ -5,7 +5,7 @@ import { getCharacters } from '../../actions/characters';
 
 import Table from '../commons/table/simpleTable';
 
-const Movies = ({ handleDrawerChange }) => {
+const Movies = () => {
   const dispatch = useDispatch()
   const characters = useSelector(state => state.characters)
 
@@ -17,7 +17,6 @@ const Movies = ({ handleDrawerChange }) => {
     <Table
       title="Personajes"
       data={characters}
-      handleDrawerChange={handleDrawerChange}
       from="characters"
     />
   );

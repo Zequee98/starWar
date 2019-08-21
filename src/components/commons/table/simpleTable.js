@@ -27,7 +27,6 @@ const InputContainer = styled.div`
 `;
 
 const SimpleTable = ({
-  handleDrawerChange,
   data,
   title,
   from
@@ -51,8 +50,24 @@ const SimpleTable = ({
   })
 
   const dataFilter = counterFilter.slice(page * 10, page * 10 + 10).map((data) => {
-    if (from === 'movies') return (<TableInfo from={from} key={data.title} title={data.title} data={data} handleDrawerChange={handleDrawerChange} />);
-    return (<TableInfo from={from} key={data.name} title={data.name} data={data} handleDrawerChange={handleDrawerChange} />);
+    if (from === 'movies') {
+      return (
+        <TableInfo
+          from={from}
+          key={data.title}
+          title={data.title}
+          data={data}
+        />
+      );
+    }
+    return (
+      <TableInfo
+        from={from}
+        key={data.name}
+        title={data.name}
+        data={data}
+      />
+    );
   })
 
   const emptyRows = search ? (10 - Math.min(10, dataFilter.length)) : (10 - Math.min(10, (data.data.results || []).length - page * 10));

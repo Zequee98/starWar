@@ -19,26 +19,10 @@ const useStyles = makeStyles(() => ({
 const App = () => {
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [open, setOpen] = React.useState(false);
-  const [item, setItem] = React.useState({});
 
   const handleDrawerToggle = (close) => {
     if (!close) return setMobileOpen(false);
     setMobileOpen(!mobileOpen);
-  };
-
-  const handleDrawerChange = (data, from) => {
-    if (data) {
-      if ((from === 'movies' ? data.title : data.name) === (item.title || item.name)) {
-        setItem({});
-        return setOpen(false);
-      }
-      if (!open) setOpen(true);
-      return setItem(data);
-    }
-
-    setItem({});
-    setOpen(!open);
   };
 
   return (
@@ -48,23 +32,15 @@ const App = () => {
           <CssBaseline />
           <AppBar
             handleDrawerToggle={handleDrawerToggle}
-            open={open}
           />
           <Drawer
             handleDrawerToggle={handleDrawerToggle}
             mobileOpen={mobileOpen}
           />
 
-          <Routes
-            handleDrawerChange={handleDrawerChange}
-            open={open}
-          />
+          <Routes />
 
-          <DrawerInfo
-            handleDrawerChange={handleDrawerChange}
-            open={open}
-            item={item}
-          />
+          <DrawerInfo />
         </Router>
       </div>
     </Provider>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from "react-router-dom";
 import clsx from 'clsx';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Characters from '../components/characters';
@@ -27,8 +28,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const routes = ({ handleDrawerChange, open }) => {
+const routes = () => {
   const classes = useStyles();
+  const open = useSelector(state => state.drawer.open)
 
   return (
     <React.Fragment>
@@ -36,8 +38,8 @@ const routes = ({ handleDrawerChange, open }) => {
 
       <main className={clsx(classes.content, { [classes.contentShift]: open })}>
         <div className={classes.toolbar} />
-        <Route exact path="/movies" component={() => <Movies handleDrawerChange={handleDrawerChange} />} />
-        <Route exact path="/characters" component={() => <Characters handleDrawerChange={handleDrawerChange} />} />
+        <Route exact path="/movies" component={Movies} />
+        <Route exact path="/characters" component={Characters} />
       </main>
 
     </React.Fragment>

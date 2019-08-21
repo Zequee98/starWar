@@ -1,12 +1,13 @@
 import React from 'react';
 import clsx from 'clsx';
+import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
@@ -32,7 +33,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AppBarComponent = ({ handleDrawerToggle, open }) => {
+const AppBarComponent = ({ handleDrawerToggle }) => {
+  const open = useSelector(state => state.drawer.open)
+
   const classes = useStyles();
 
   return (
