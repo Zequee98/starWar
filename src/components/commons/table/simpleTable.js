@@ -29,7 +29,6 @@ const InputContainer = styled.div`
 const SimpleTable = ({
   data,
   title,
-  from
 }) => {
   const classes = useStyles();
   const [search, setValueSearch] = useState('');
@@ -45,14 +44,13 @@ const SimpleTable = ({
   };
 
   const counterFilter = (data.data.results || []).filter(data => {
-    if (search && (from === 'movies' ? data.title : data.name).toLocaleLowerCase().includes(search.toLocaleLowerCase())) return true;
+    if (search && (data.title || data.name).toLocaleLowerCase().includes(search.toLocaleLowerCase())) return true;
     else if (search === '') return true;
     return false;
   })
 
   const dataFilter = counterFilter.slice(page * 10, page * 10 + 10).map((data) => (
     <TableInfo
-      from={from}
       key={data.title || data.name}
       title={data.title || data.name}
       data={data}

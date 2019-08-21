@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import TableCell from '@material-ui/core/TableCell';
 import EyeIcon from '@material-ui/icons/Visibility';
@@ -11,9 +11,9 @@ import { handleDrawerChange } from '../../../actions/drawer';
 const tableInfo = ({
   data,
   title,
-  from
 }) => {
   const dispatch = useDispatch();
+  const item = useSelector(state => state.drawer.item)
 
   const handleSelected = () => {
     dispatch(handleDrawerChange(data))
@@ -25,7 +25,7 @@ const tableInfo = ({
         {title}
       </TableCell>
       <TableCell align="right">
-        {(true)
+        {((data.title || data.name) === (item.title || item.name))
           ? (<EyeOffIcon style={{ cursor: 'pointer' }} onClick={handleSelected} />)
           : (<EyeIcon style={{ cursor: 'pointer' }} onClick={handleSelected} />)}
       </TableCell>

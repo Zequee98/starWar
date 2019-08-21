@@ -17,7 +17,6 @@ const Movies = () => {
     <Table
       title="Peliculas"
       data={films}
-      from="movies"
     />
   );
 };
