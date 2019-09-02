@@ -50,11 +50,9 @@ const AppBarComponent = ({ handleDrawerToggle }) => {
         >
           <MenuIcon />
         </IconButton>
-        <Button component={Link} to="/">
-          <Typography variant="h6" noWrap>
-            Star Wars
-          </Typography>
-        </Button>
+        <Typography variant="h6" noWrap>
+          Star Wars
+        </Typography>
       </Toolbar>
     </AppBar>
   );

@@ -49,7 +49,7 @@ const SimpleTable = ({
     return false;
   })
 
-  const dataFilter = counterFilter.slice(page * 10, page * 10 + 10).map((data) => (
+  const dataFilter = counterFilter.slice(page * 10, page * 10 + 10).map(data => (
     <TableInfo
       key={data.title || data.name}
       title={data.title || data.name}

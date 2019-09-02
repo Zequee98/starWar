@@ -6,7 +6,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Characters from '../components/characters';
 import Movies from '../components/movies';
-import Home from '../components/home';
 
 const useStyles = makeStyles(theme => ({
   content: {
@@ -34,14 +33,11 @@ const routes = () => {
 
   return (
     <React.Fragment>
-      <Route exact path="/" component={Home} />
-
       <main className={clsx(classes.content, { [classes.contentShift]: open })}>
         <div className={classes.toolbar} />
         <Route exact path="/movies" component={Movies} />
-        <Route exact path="/characters" component={Characters} />
+        <Route exact path="/" component={Characters} />
       </main>
-
     </React.Fragment>
   );
 }

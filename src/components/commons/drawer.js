@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MovieIcon from '@material-ui/icons/Movie';
+import PeopleIcon from '@material-ui/icons/People';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -22,6 +23,7 @@ const useStyles = makeStyles(theme => ({
   drawerPaper: {
     width: drawerWidth,
     marginTop: 64,
+    backgroundColor: '#4f5b62'
   },
   drawerPaperMobile: {
     width: drawerWidth,
@@ -45,12 +47,12 @@ const ResponsiveDrawer = ({ container, mobileOpen, handleDrawerToggle }) => {
         <ListItem
           button
           component={Link}
-          to='/characters'
-          onClick={() => handleChangeSelect('/characters')}
-          selected={select === '/characters'}
+          to='/'
+          onClick={() => handleChangeSelect('/')}
+          selected={select === '/'}
         >
-          <ListItemIcon><InboxIcon /></ListItemIcon>
-          <ListItemText primary="Personajes" />
+          <ListItemIcon><PeopleIcon style={{ color: 'white' }} /></ListItemIcon>
+          <ListItemText primary="Personajes" style={{ color: 'white' }} />
         </ListItem>
         <ListItem
           button
@@ -59,8 +61,8 @@ const ResponsiveDrawer = ({ container, mobileOpen, handleDrawerToggle }) => {
           onClick={() => handleChangeSelect('/movies')}
           selected={select === '/movies'}
         >
-          <ListItemIcon><InboxIcon /></ListItemIcon>
-          <ListItemText primary="Peliculas" />
+          <ListItemIcon><MovieIcon style={{ color: 'white' }} /></ListItemIcon>
+          <ListItemText primary="Peliculas" style={{ color: 'white' }} />
         </ListItem>
       </List>
     </div>
